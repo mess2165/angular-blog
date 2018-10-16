@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import {Subject} from 'rxjs';
 import {Post} from '../models/Post.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +26,13 @@ export class PostService {
     firebase.database().ref('/posts')
       .on('value', (data) => {
         this.posts = data.val() ? data.val() : [];
+
+        this.posts.forEach(
+          (postToUpdate: Post) => {
+            postToUpdate.createdAt = new Date(postToUpdate.createdAtFormatted);
+          }
+        );
+
         this.emitPosts();
       });
   }
@@ -45,9 +53,7 @@ export class PostService {
   createPost(title: string, content: string) {
     this.getPosts();
     const newPost = new Post(title, content);
-    console.log(this.posts);
     this.posts.push(newPost);
-    console.log(this.posts);
     this.savePosts();
     this.emitPosts();
   }

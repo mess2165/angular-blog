@@ -27,8 +27,8 @@ export class PostListItemComponent implements OnInit {
     this.postService.updateLoveIt(this.post);
   }
 
-  onRemove(post: Post) {
-    this.postService.removePost(post);
+  onRemove() {
+    this.postService.removePost(this.post);
     this.postService.emitPosts();
   }
 }

@@ -3,7 +3,7 @@
   'list-group-item-success' : post.loveIts > 0,
   'list-group-item-danger' : post.loveIts < 0
 }">
-  <h4><strong>{{ post.title | titlecase}}</strong>  <small class="pull-right text-muteds"><em>{{ post.created_at | date: 'short' | uppercase }}</em></small></h4>
+  <h4><strong>{{ post.title | titlecase}}</strong>  <small class="pull-right text-muteds"><em>{{ post.createdAt | date: 'short' | uppercase }}</em></small></h4>
   <p>{{ post.content }}</p>
 
   <button class="btn btn-success" (click)="onLike()">J'aime</button>
